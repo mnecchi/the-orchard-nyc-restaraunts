@@ -1,23 +1,25 @@
-import React, { useRef , useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner';
+import Header from './components/Header';
+import RestaurantsForm from './components/RestaurantsForm';
+import Loading from './components/Loading';
+import RestaurantsList from './components/RestaurantsList';
 
 const App = () => {
-  const [ cuisine, setCuisine ] = useState();
-  const [ minGrade, setMinGrade ] = useState();
+  const [ restaurantsFilter, setRestaurantsFilter ] = useState({});
   const [ loading, setLoading ] = useState(false);
+  const [ limit, setLimit ] = useState(25);
+  const [ offset, setOffset ] = useState(0);
+  const [ order, setOrder ] = useState('dba');
+  const [ results, setResults ] = useState();
 
   useEffect(() => {
+    const { cuisine, minGrade} = restaurantsFilter;
     if (cuisine !== undefined && minGrade !== undefined) {
       setLoading(true);
 
-      fetch(`https://desolate-spire-11056.herokuapp.com/restaurants?cuisine=${cuisine}&minGrade=${minGrade}`, {
+      fetch(`https://desolate-spire-11056.herokuapp.com/restaurants?cuisine=${cuisine}&minGrade=${minGrade}&limit=${limit}&offset=${offset}`, {
         method: 'GET',
         mode: 'cors'
       }).then(response => {
@@ -27,92 +29,48 @@ const App = () => {
 
         return response.json();
       }).then(json => {
-        console.log(json);
+        setResults(json);
       }).catch(err => {
-        console.error(err.message)
+        console.error(err.message);
       }).finally(() => {
         setLoading(false);
       });
     }
-  }, [cuisine, minGrade])
+  }, [limit, offset, order, restaurantsFilter])
 
-  const cuisineTypeInput = useRef();
-  const minGradeInput = useRef();
 
-  const loadRestaurants = event => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    setCuisine(cuisineTypeInput.current.value);
-    setMinGrade(minGradeInput.current.value);
+  const onRestaurantsChange = (cuisine, minGrade) => {
+    setRestaurantsFilter({ cuisine, minGrade });
   }
 
+  const onLimitChange = limit => {
+    setLimit(limit);
+  }
+
+  const onOrderChange = order => {
+    setOrder(order);
+  }
+
+  const onOffsetChange = offset => {
+    setOffset(offset);
+  }
 
   return (
     <Container>
-      <Row>
-        <Col>
-          <Jumbotron>
-            Header
-          </Jumbotron>
-        </Col>
-      </Row>
-      <Row>
-        <Col md={{ offset: 2, span: 8 }}>
-          <Form onSubmit={loadRestaurants}>
-            <Row>
-              <Col>
-                <Form.Group>
-                  <Row>
-                    <Col>
-                      <Form.Label>Type of cuisine</Form.Label>
-                      <Form.Control size="lg" as="select" ref={cuisineTypeInput}>
-                        <option value="">Whatever!</option>
-                        <option>Thai</option>
-                        <option>Indian</option>
-                        <option>Chinese</option>
-                        <option>Japanese</option>
-                        <option>Italian</option>
-                      </Form.Control>
-                      <Form.Text className="text-muted">
-                        What do you fancy today?
-                      </Form.Text>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                      <Form.Label>Minimum Grade</Form.Label>
-                      <Form.Control size="lg" as="select" ref={minGradeInput}>
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
-                        <option>D</option>
-                        <option>E</option>
-                        <option>F</option>
-                      </Form.Control>
-                      <Form.Text className="text-muted">
-                        Are you feeling lucky?
-                      </Form.Text>
-                    </Col>
-                  </Row>
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Button type="submit">Submit form</Button>
-              </Col>
-            </Row>
-          </Form>
-        </Col>
-      </Row>
-      <Row>
-        <Col md="6"></Col>
-        <Col>
-          {loading && <Spinner animation="border" />}
-        </Col>
-        <Col md="6"></Col>
-      </Row>
+      <Header />
+      <RestaurantsForm onChange={onRestaurantsChange} />
+      {loading ?
+        <Loading /> :
+        <RestaurantsList
+          data={results}
+          limit={limit}
+          offset={offset}
+          order={order}
+          onLimitChange={onLimitChange}
+          onOrderChange={onOrderChange}
+          onOffsetChange={onOffsetChange}
+        />
+      }
     </Container>
   );
 }
