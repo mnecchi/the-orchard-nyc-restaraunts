@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
 import Header from '../components/Header';
 import RestaurantsForm from '../components/RestaurantsForm';
 import Loading from '../components/Loading';
@@ -18,8 +17,8 @@ const RenderComponent = ({
   onOffsetChange,
   onRestaurantsChange
 }) => (
-  <Container>
-    <Header />
+  <>
+    <Header title={"The NYC Restaurants Search"} />
     <RestaurantsForm onChange={onRestaurantsChange} />
     {loading ?
       <Loading /> :
@@ -33,7 +32,7 @@ const RenderComponent = ({
         onOffsetChange={onOffsetChange}
       />
     }
-  </Container>
+  </>
 );
 
 const General = () => (

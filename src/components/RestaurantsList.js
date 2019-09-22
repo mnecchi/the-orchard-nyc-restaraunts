@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
@@ -39,11 +40,11 @@ const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderCha
   }
 
   return (
-    <>
+    <Container className="results">
       <Row>
         <Col>
           <Form>
-            <Form.Row>
+            <Form.Row className="shadow box results-bar">
               <Form.Group md={3} as={Col}>
                 <Form.Label>Results per Page:</Form.Label>
                 <Form.Control size="sm" as="select" value={limit} ref={limitInput} onChange={onLimitInputChange}>
@@ -67,34 +68,47 @@ const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderCha
       </Row>
       <Row>
         <Col>
-          <Table bordered striped>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Borough</th>
-                <th>Grade</th>
-              </tr>
-            </thead>
-            <tbody>
-              {results.map(result => <tr key={result.restaurant_id}>
-                <td>{result.dba}</td>
-                <td>{result.boro}</td>
-                <td>{result.grade}</td>
-              </tr>)}
-            </tbody>
-          </Table>
+          {paginationItems.length > 1 && (
+          <Row>
+            <Col>
+              <Pagination size="sm" onClick={onPaginationClick}>
+                {paginationItems}
+              </Pagination>
+            </Col>
+          </Row>
+          )}
+          <Row>
+            <Col>
+              <Table bordered striped className="shadow">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Borough</th>
+                    <th>Grade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {results.map(result => <tr key={result.restaurant_id}>
+                    <td>{result.dba}</td>
+                    <td>{result.boro}</td>
+                    <td>{result.grade}</td>
+                  </tr>)}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+          {paginationItems.length > 1 && (
+          <Row>
+            <Col>
+              <Pagination size="sm" onClick={onPaginationClick}>
+                {paginationItems}
+              </Pagination>
+            </Col>
+          </Row>
+          )}
         </Col>
       </Row>
-      {paginationItems.length > 1 && (
-      <Row>
-        <Col>
-          <Pagination size="sm" onClick={onPaginationClick}>
-            {paginationItems}
-          </Pagination>
-        </Col>
-      </Row>
-      )}
-    </>
+    </Container>
   )
 };
 

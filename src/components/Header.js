@@ -3,14 +3,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
-const Header = () => (
-  <Row>
-    <Col>
-      <Jumbotron>
-        Header
-      </Jumbotron>
-    </Col>
-  </Row>
-);
+const Header = ({ title, className }) => {
+  return (
+    <Row>
+      <Col>
+        <Jumbotron fluid className={['text-center', className || ''].join(' ')}>
+          <h1>{title}</h1>
+        </Jumbotron>
+      </Col>
+    </Row>
+  );
+};
 
 export default Header;

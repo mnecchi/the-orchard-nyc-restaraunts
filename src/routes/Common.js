@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
 
 const Common = ({ apiUrl, RenderComponent, ...props }) => {
   const [ cuisine, setCuisine ] = useState(props.cuisine);
@@ -58,17 +59,19 @@ const Common = ({ apiUrl, RenderComponent, ...props }) => {
   }
 
   return (
-    <RenderComponent
-      loading={loading}
-      data={results}
-      limit={limit}
-      offset={offset}
-      order={order}
-      onRestaurantsChange={onRestaurantsChange}
-      onLimitChange={onLimitChange}
-      onOrderChange={onOrderChange}
-      onOffsetChange={onOffsetChange}
-    />
+    <Container className="main shadow">
+      <RenderComponent
+        loading={loading}
+        data={results}
+        limit={limit}
+        offset={offset}
+        order={order}
+        onRestaurantsChange={onRestaurantsChange}
+        onLimitChange={onLimitChange}
+        onOrderChange={onOrderChange}
+        onOffsetChange={onOffsetChange}
+      />
+    </Container>
   );
 
 

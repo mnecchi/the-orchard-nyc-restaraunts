@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import RestaurantsList from '../components/RestaurantsList';
@@ -16,8 +15,8 @@ const RenderComponent = ({
   onOrderChange,
   onOffsetChange
 }) => (
-  <Container>
-    <Header />
+  <>
+    <Header className="thai" title="The NYC Healthier Thai Restaurants Search" />
     {loading ?
       <Loading /> :
       <RestaurantsList
@@ -30,7 +29,7 @@ const RenderComponent = ({
         onOffsetChange={onOffsetChange}
       />
     }
-  </Container>
+  </>
 );
 
 const General = () => (
