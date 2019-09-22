@@ -81,6 +81,7 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
     <Container className="main shadow">
       <Header title={title} className={headerClassName || ''}/>
       <RestaurantsForm
+        loading={loading}
         name={name}
         street={street}
         boro={boro}

@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { boros, grades, cuisines } from '../config';
 
-const RestaurantsForm = ({ onChange, hide, ...props }) => {
+const RestaurantsForm = ({ onChange, hide, loading, ...props }) => {
 
   const [ name, setName ] = useState(props.name || '');
   const [ street, setStreet ] = useState(props.street || '');
@@ -93,7 +93,7 @@ const RestaurantsForm = ({ onChange, hide, ...props }) => {
           </Form.Row>
           )}
           <Form.Row className={"form-button"}>
-            <Button size="lg" type="submit">Let's go! I'm starving! <span role="img" aria-label="">😩</span></Button>
+            <Button disabled={loading} size="lg" type="submit">Let's go! I'm starving! <span role="img" aria-label="">😩</span></Button>
           </Form.Row>
         </Form>
       </Col>
