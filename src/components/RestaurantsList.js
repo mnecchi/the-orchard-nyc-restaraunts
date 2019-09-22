@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
 import Form from 'react-bootstrap/Form';
+import { gradesEmojis } from '../config';
 
 const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderChange, onOffsetChange }) => {
   const { results, total_count } = data || {};
@@ -88,10 +89,10 @@ const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderCha
                   </tr>
                 </thead>
                 <tbody>
-                  {results.map(result => <tr key={result.restaurant_id}>
+                  {results.map(result => <tr key={result.restaurant_id} className={`result ${result.grade.toLowerCase()}-grade`}>
                     <td>{result.dba}</td>
                     <td>{result.boro}</td>
-                    <td>{result.grade}</td>
+                    <td>{result.grade} <span role="img" aria-label="">{gradesEmojis[result.grade] || ''}</span></td>
                   </tr>)}
                 </tbody>
               </Table>

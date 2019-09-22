@@ -38,9 +38,6 @@ body {
 	margin-bottom: 2rem;
 }
 
-form.search-form {
-}
-
 form .form-button>button {
 	margin: 2rem auto 0;
 }
@@ -50,5 +47,30 @@ form .form-button>button {
 	margin-bottom: 2rem;
 }
 
-.results {
+.result {
+	color: grey;
+}
+
+.result.a-grade {
+	color: darkgreen;
+}
+
+.result.b-grade {
+	color: green;
+}
+
+.result.c-grade {
+	color: darkorange;
+}
+
+.result.d-grade {
+	color: orange;
+}
+
+.result.e-grade {
+	color: red;
+}
+
+.result.f-grade {
+	color: darkred
 }
