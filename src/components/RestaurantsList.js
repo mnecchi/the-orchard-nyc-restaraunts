@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import { gradesEmojis } from '../config';
 import ListPagination from './ListPagination';
 
-const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderChange, onOffsetChange }) => {
+const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderChange, onOffsetChange, onOpenRestaurantDetails }) => {
   const { results, total_count } = data || {};
 
   const limitInput = useRef();
@@ -61,7 +61,7 @@ const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderCha
           <ListPagination totalCount={total_count} sideItems={5} limit={limit} offset={offset} onChange={onPaginationChange} />
           <Row>
             <Col>
-              <Table bordered striped className="shadow">
+              <Table bordered striped hover className="shadow">
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -70,11 +70,13 @@ const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderCha
                   </tr>
                 </thead>
                 <tbody>
-                  {results.map(result => <tr key={result.restaurant_id} className={`result ${result.grade.toLowerCase()}-grade`}>
+                  {results.map(result => (
+                  <tr key={result.restaurant_id} className={`result ${result.grade.toLowerCase()}-grade`} onClick={() => onOpenRestaurantDetails(result)}>
                     <td>{result.dba}</td>
                     <td>{result.boro}</td>
                     <td>{result.grade} <span role="img" aria-label="">{gradesEmojis[result.grade] || ''}</span></td>
-                  </tr>)}
+                  </tr>)
+                  )}
                 </tbody>
               </Table>
             </Col>

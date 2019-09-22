@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import RestaurantsList from '../components/RestaurantsList';
 import RestaurantsForm from '../components/RestaurantsForm';
+import RestaurantModal from '../components/RestaurantModal';
 
 const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
   const [ name, setName ] = useState('');
@@ -19,6 +20,7 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
   const [ results, setResults ] = useState();
   const [ submit, setSubmit ] = useState(false);
   const [ error, setError ] = useState(false);
+  const [ selectedRestaurant, setSelectedRestaurant ] = useState({});
 
   useEffect(() => {
     if (!submit) {
@@ -77,6 +79,10 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
     setOffset(offset);
   }
 
+  const onOpenRestaurantDetails = restaurant => {
+    setSelectedRestaurant(restaurant);
+  }
+
   return (
     <Container className="main shadow">
       <Header title={title} className={headerClassName || ''}/>
@@ -100,9 +106,11 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
           onLimitChange={onLimitChange}
           onOrderChange={onOrderChange}
           onOffsetChange={onOffsetChange}
+          onOpenRestaurantDetails={onOpenRestaurantDetails}
         />
       }
       {error && <Alert variant="danger">An error occured! <span role="img" aria-label="">🤬</span></Alert>}
+      <RestaurantModal restaurant={selectedRestaurant} onHide={() => setSelectedRestaurant({})} />
     </Container>
   );
 
