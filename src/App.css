@@ -30,6 +30,11 @@ body {
 	background-size: cover;
 }
 
+.alert-danger {
+	margin: 0 4rem;
+	font-size: 20px;
+}
+
 .jumbotron.thai {
 	background-image: url('./images/thai.jpg');
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import RestaurantsList from '../components/RestaurantsList';
@@ -17,12 +18,14 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
   const [ order, setOrder ] = useState('dba');
   const [ results, setResults ] = useState();
   const [ submit, setSubmit ] = useState(false);
+  const [ error, setError ] = useState(false);
 
   useEffect(() => {
     if (!submit) {
       return;
     }
 
+    setError(false);
     setLoading(true);
 
     const queryOptions = {
@@ -45,7 +48,8 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
       }).then(json => {
         setResults(json);
       }).catch(err => {
-        console.error(err.message);
+        setResults([]);
+        setError(true);
       }).finally(() => {
         setLoading(false);
       });
@@ -97,6 +101,7 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
           onOffsetChange={onOffsetChange}
         />
       }
+      {error && <Alert variant="danger">An error occured! <span role="img" aria-label="">🤬</span></Alert>}
     </Container>
   );
 
