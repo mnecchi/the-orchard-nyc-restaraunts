@@ -7,8 +7,9 @@ import './App.css';
 
 const App = () => (
   <Router>
-    <Route exact path="/" component={General} />
+    <Route exact path="/" component={Thai} />
     <Route path="/thai" component={Thai} />
+    <Route path="/all" component={General} />
   </Router>
 );
 
