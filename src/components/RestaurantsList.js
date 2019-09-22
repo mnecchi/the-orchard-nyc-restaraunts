@@ -3,9 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
-import Pagination from 'react-bootstrap/Pagination';
 import Form from 'react-bootstrap/Form';
 import { gradesEmojis } from '../config';
+import ListPagination from './ListPagination';
 
 const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderChange, onOffsetChange }) => {
   const { results, total_count } = data || {};
@@ -21,23 +21,12 @@ const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderCha
     onOrderChange(orderInput.current.value);
   };
 
-  const onPaginationClick = ({ target }) => {
-    onOffsetChange((parseInt(target.text) - 1) * limit);
+  const onPaginationChange = offset => {
+    onOffsetChange(offset);
   }
 
   if (!Array.isArray(results) || results.length === 0) {
     return null;
-  }
-
-  let numberOfPages = 0;
-  const paginationItems = [];
-  if (total_count !== undefined) {
-    numberOfPages = Math.ceil(total_count / limit);
-    const currPage = Math.floor(offset / limit) + 1;
-
-    for (let i = 1; i <= numberOfPages; ++i) {
-      paginationItems.push(<Pagination.Item key={i} active={i === currPage}>{i}</Pagination.Item>)
-    }
   }
 
   return (
@@ -69,15 +58,7 @@ const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderCha
       </Row>
       <Row>
         <Col>
-          {paginationItems.length > 1 && (
-          <Row>
-            <Col>
-              <Pagination size="sm" onClick={onPaginationClick}>
-                {paginationItems}
-              </Pagination>
-            </Col>
-          </Row>
-          )}
+          <ListPagination totalCount={total_count} sideItems={5} limit={limit} offset={offset} onChange={onPaginationChange} />
           <Row>
             <Col>
               <Table bordered striped className="shadow">
@@ -98,15 +79,7 @@ const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderCha
               </Table>
             </Col>
           </Row>
-          {paginationItems.length > 1 && (
-          <Row>
-            <Col>
-              <Pagination size="sm" onClick={onPaginationClick}>
-                {paginationItems}
-              </Pagination>
-            </Col>
-          </Row>
-          )}
+          <ListPagination totalCount={total_count} sideItems={5} limit={limit} offset={offset} onChange={onPaginationChange} />
         </Col>
       </Row>
     </Container>
