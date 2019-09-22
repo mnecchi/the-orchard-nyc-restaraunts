@@ -5,9 +5,11 @@ import Header from './components/Header';
 import RestaurantsForm from './components/RestaurantsForm';
 import Loading from './components/Loading';
 import RestaurantsList from './components/RestaurantsList';
+import { apiUrl } from './config';
 
 const App = () => {
-  const [ restaurantsFilter, setRestaurantsFilter ] = useState({});
+  const [ cuisine, setCuisine ] = useState();
+  const [ minGrade, setMinGrade ] = useState();
   const [ loading, setLoading ] = useState(false);
   const [ limit, setLimit ] = useState(25);
   const [ offset, setOffset ] = useState(0);
@@ -15,32 +17,39 @@ const App = () => {
   const [ results, setResults ] = useState();
 
   useEffect(() => {
-    const { cuisine, minGrade} = restaurantsFilter;
     if (cuisine !== undefined && minGrade !== undefined) {
       setLoading(true);
 
-      fetch(`https://desolate-spire-11056.herokuapp.com/restaurants?cuisine=${cuisine}&minGrade=${minGrade}&limit=${limit}&offset=${offset}`, {
-        method: 'GET',
-        mode: 'cors'
-      }).then(response => {
-        if (!response.ok) {
-          throw new Error('Network Problem!');
-        }
+      const queryOptions = {
+        cuisine, minGrade, limit, offset, order
+      };
+      const queryString = Object.keys(queryOptions).reduce((acc, option) => {
+        acc.push(`${option}=${queryOptions[option]}`);
+        return acc;
+      } , []).join('&');
 
-        return response.json();
-      }).then(json => {
-        setResults(json);
-      }).catch(err => {
-        console.error(err.message);
-      }).finally(() => {
-        setLoading(false);
-      });
+      fetch(`${apiUrl}?${queryString}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network Problem!');
+          }
+
+          return response.json();
+        }).then(json => {
+          setResults(json);
+        }).catch(err => {
+          console.error(err.message);
+        }).finally(() => {
+          setLoading(false);
+        });
     }
-  }, [limit, offset, order, restaurantsFilter])
+  }, [limit, offset, order, cuisine, minGrade])
 
 
   const onRestaurantsChange = (cuisine, minGrade) => {
-    setRestaurantsFilter({ cuisine, minGrade });
+    setOffset(0);
+    setCuisine(cuisine);
+    setMinGrade(minGrade);
   }
 
   const onLimitChange = limit => {

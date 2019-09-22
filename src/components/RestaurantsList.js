@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
@@ -27,15 +27,11 @@ const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderCha
     return null;
   }
 
-  console.log(offset);
-
   let numberOfPages = 0;
   const paginationItems = [];
   if (total_count !== undefined) {
     numberOfPages = Math.ceil(total_count / limit);
     const currPage = Math.floor(offset / limit) + 1;
-
-    console.log(currPage);
 
     for (let i = 1; i <= numberOfPages; ++i) {
       paginationItems.push(<Pagination.Item key={i} active={i === currPage}>{i}</Pagination.Item>)
