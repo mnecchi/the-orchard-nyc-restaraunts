@@ -1,7 +1,6 @@
-const apiUrl = "https://desolate-spire-11056.herokuapp.com/restaurants";
+const apiUrl = "https://desolate-spire-11056.herokuapp.com";
 
 const boros = ['Bronx', 'Brooklyn', 'Manhattan', 'Queens', 'Staten Island'];
-const cuisines = ['Thai', 'Indian', 'Chinese', 'Japanese', 'Italian'];
 const grades = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 const gradesEmojis = {
@@ -13,4 +12,4 @@ const gradesEmojis = {
 	'F': '☠️'
 }
 
-export { apiUrl, boros, cuisines, grades, gradesEmojis };
+export { apiUrl, boros, grades, gradesEmojis };

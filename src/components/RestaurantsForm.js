@@ -1,9 +1,9 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect }from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { boros, grades, cuisines } from '../config';
+import { apiUrl, boros, grades } from '../config';
 
 const RestaurantsForm = ({ onChange, hide, loading, ...props }) => {
 
@@ -12,6 +12,24 @@ const RestaurantsForm = ({ onChange, hide, loading, ...props }) => {
   const [ boro, setBoro ] = useState(props.boro || '');
   const [ cuisine, setCuisine ] = useState(props.cuisine || '');
   const [ minGrade, setMinGrade ] = useState(props.minGrade || '');
+  const [ cuisines, setCuisines ] = useState([]);
+
+  useEffect(() => {
+    if (!hide.includes('cuisine')) {
+      fetch(`${apiUrl}/cuisines`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network Problem!');
+        }
+
+        return response.json();
+      }).then(json => {
+        setCuisines(json);
+      }).catch(err => {
+        setCuisines([]);
+      })
+    }
+  }, [hide]);
 
   const onNameChange = e => setName(e.target.value);
   const onStreetChange = e => setStreet(e.target.value);
@@ -71,7 +89,7 @@ const RestaurantsForm = ({ onChange, hide, loading, ...props }) => {
               <Form.Label>Type of cuisine</Form.Label>
               <Form.Control size="lg" as="select" defaultValue={cuisine} onChange={onCuisineChange}>
                 <option value="">Whatever!</option>
-                {cuisines.map((type, index) => <option key={index}>{type}</option>)}
+                {cuisines.map((item, index) => <option key={index}>{item.cuisine}</option>)}
               </Form.Control>
               <Form.Text className="text-muted">
                 What do you fancy today?

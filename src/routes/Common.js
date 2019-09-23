@@ -40,7 +40,7 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
       } , [])
       .join('&');
 
-    fetch(`${apiUrl}?${queryString}`)
+    fetch(`${apiUrl}/restaurants?${queryString}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network Problem!');
