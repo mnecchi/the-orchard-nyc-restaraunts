@@ -23,6 +23,10 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
   const [ selectedRestaurant, setSelectedRestaurant ] = useState({});
 
   useEffect(() => {
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
     if (!submit) {
       return;
     }

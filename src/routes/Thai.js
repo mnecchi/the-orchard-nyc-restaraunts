@@ -7,7 +7,7 @@ const General = () => (
     apiUrl={apiUrl}
     cuisine={'Thai'}
     minGrade={'F'}
-    title={"The NYC Healthier Thai Restaurants Search"}
+    title={"The Papaya Orchard Search 🇹🇭"}
     headerClassName={"thai"}
     hide={['cuisine', 'minGrade']}
   />

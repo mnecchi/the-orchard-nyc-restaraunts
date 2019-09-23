@@ -5,7 +5,7 @@ import { apiUrl } from '../config';
 const General = () => (
   <Common
     apiUrl={apiUrl}
-    title={"The NYC Restaurants Search"}
+    title={"The Big Apple Orchard Search 🍎"}
   />
 );
 
