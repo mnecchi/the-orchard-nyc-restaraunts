@@ -31,7 +31,7 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
     setLoading(true);
 
     const queryOptions = {
-      name, street, boro, cuisine, minGrade, limit, offset, order
+      dba: name, street, boro, cuisine, minGrade, limit, offset, order
     };
     const queryString = Object.keys(queryOptions)
       .reduce((acc, option) => {
@@ -110,7 +110,7 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
         />
       }
       {error && <Alert variant="danger">An error occured! <span role="img" aria-label="">🤬</span></Alert>}
-      <RestaurantModal restaurant={selectedRestaurant} onHide={() => setSelectedRestaurant({})} />
+      <RestaurantModal id={selectedRestaurant.restaurant_id} name={selectedRestaurant.dba} onHide={() => setSelectedRestaurant({})} />
     </Container>
   );
 

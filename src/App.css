@@ -54,6 +54,7 @@ form .form-button>button {
 
 .result {
 	color: grey;
+	cursor: pointer;
 }
 
 .result.a-grade {
@@ -78,4 +79,13 @@ form .form-button>button {
 
 .result.f-grade {
 	color: darkred
+}
+
+.details label {
+	font-style: italic;
+	margin: 0;
+}
+
+.details .result.grade {
+	font-weight: bold;
 }

@@ -2,37 +2,41 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { apiUrl, gradesEmojis } from '../config';
 
-const RestaurantModal = ({ restaurant, onHide }) => {
+const RestaurantModal = ({ id, name, onHide }) => {
   const [ loading, setLoading ] = useState(true);
   const [ details, setDetails ] = useState({});
 
   useEffect(() => {
     setLoading(true);
 
-    new Promise(resolve => {
-      window.setTimeout(() => {
-        resolve({
-          boro: 'BRONX',
-          cuisine: 'Thai',
-          building: '1007',
-          street: '37 STREET',
-          zipcode: '10001',
-          phone: '5252454254',
-          grade: 'A',
-          violation_description: 'Facility not vermin proof. Harborage or conditions conducive to attracting vermin to the premises and/or allowing vermin to exist.',
-          critical_flag: 'Not Critical'
+    if (id) {
+      fetch(`${apiUrl}/restaurants/${id}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network Problem!');
+          }
+
+          return response.json();
+        }).then(json => {
+          console.log(json);
+          setLoading(false);
+          setDetails(json);
+        }).catch(err => {
+          console.error(err);
+          setDetails([]);
         });
-      }, 5000);
-    }).then(restaurant => {
-      setLoading(false);
-      setDetails(restaurant);
-    })
-  }, []);
+      }
+  }, [id]);
+
+  const { cuisine, building, street, zipcode, boro, phone, grade, violation_description } = details;
 
   return (
     <Modal
-      show={!!restaurant.restaurant_id}
+      show={!!id}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -40,23 +44,39 @@ const RestaurantModal = ({ restaurant, onHide }) => {
     >
       <Modal.Header closeButton>
       <Modal.Title id="contained-modal-title-vcenter">
-        {restaurant.dba}
+        {name}
       </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="details">
         {loading && <Spinner animation="border" />}
         {!loading && (
           <>
-            <p>
-              Cuisine: {details.cuisine}
-            </p>
-            <p>
-              {details.building} {details.street}
-              {details.zipcode} {details.boro}
-            </p>
-            <p>
-              Tel: {details.phone}
-            </p>
+            <Row>
+              <Col><label>Cuisine</label>: {cuisine}</Col>
+            </Row>
+            <hr/>
+            <Row>
+              <Col>
+                <Row><Col><label>Address</label></Col></Row>
+                <Row><Col>{building} {street}</Col></Row>
+                <Row><Col>{zipcode} {boro}</Col></Row>
+              </Col>
+            </Row>
+            <Row>
+              <Col><label>Phone</label>: {phone}</Col>
+            </Row>
+            <hr/>
+            {grade && (
+            <>
+              <Row>
+                <Col className={`result grade ${grade.toLowerCase()}-grade`}>
+                  Grade {grade} <span role="img" aria-label="">{gradesEmojis[grade] || ''}</span>
+                </Col>
+              </Row>
+              <Row>
+                <Col>{violation_description || '-'}</Col>
+              </Row>
+            </>)}
           </>
         )}
       </Modal.Body>

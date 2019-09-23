@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { apiUrl, boros, grades } from '../config';
+import { apiUrl, boros, grades, gradesEmojis } from '../config';
 
 const RestaurantsForm = ({ onChange, hide, loading, ...props }) => {
 
@@ -29,7 +29,8 @@ const RestaurantsForm = ({ onChange, hide, loading, ...props }) => {
         setCuisines([]);
       })
     }
-  }, [hide]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onNameChange = e => setName(e.target.value);
   const onStreetChange = e => setStreet(e.target.value);
@@ -102,7 +103,7 @@ const RestaurantsForm = ({ onChange, hide, loading, ...props }) => {
             <Form.Group as={Col}>
               <Form.Label>Minimum Grade</Form.Label>
               <Form.Control size="lg" as="select" defaultValue={minGrade} onChange={onMinGradeChange}>
-                {grades.map((grade, index) => <option key={index}>{grade}</option>)}
+                {grades.map((grade, index) => <option key={index} value={grade}>{`${grade} ${gradesEmojis[grade] || ''}`}</option>)}
               </Form.Control>
               <Form.Text className="text-muted">
                 Are you feeling lucky?
