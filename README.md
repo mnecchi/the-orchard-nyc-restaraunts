@@ -1,68 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# The Papaya / Big Apple Orchard  Search
 
-## Available Scripts
+## The problems 🤔
 
-In the project directory, you can run:
+1) Someone has told my friend (let's call him Tom) about a new incredible Thai restaurant.<br/>
+Tom only knows the name of the restaurant and borough where it is located.
+He also doesn't trust anyone, so he wants to check if the restaurant is good enough, which, in his world, means it has a grade greater or equal to B.<br/>
 
-### `npm start`
+2) After eating at the same place for years, Tom wants to try something new. But, of course, only Thai and with a grade greater than B.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3) The same as the above for a different type of cuisine.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## The solutions 💡
 
-### `npm test`
+1) Tom decides to use [**The Papaya Orchard Search**](https://cryptic-eyrie-45126.herokuapp.com) and searches for that restaurant...Sabay...Queens...and boom! Grade B! Not the best, but good enough. Let's go then!
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2) He uses [**The Papaya Orchard Search**](https://cryptic-eyrie-45126.herokuapp.com) again but he leaves all the fields empty this time...boom!<br/>
+A list of all the Thai places he can try! He can also click on each restaurant in the list and see the address, the phone number, the last inspection date and the problems found during the inspection! 👏
 
-### `npm run build`
+3) The solution is 🥁... [**The Big Apple Orchard Search**](https://cryptic-eyrie-45126.herokuapp.com/all)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## The Geek stuff 🤓
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+The project has been developed with React using hooks and it has been bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For simplicity, faster development and to have a responsive web app out-of-the-box I have decided to use the [*Bootstrap*](<https://github.com/react-bootstrap/react-bootstrap>) library.
 
-### `npm run eject`
+From a technical point of view, the *Papaya* is just a stripped down version of the *Big Apple*.
+The react router instantiates two different components (`Thai` for the `/` route and `General` for the `/thai`) which return a common component (`Common` 😒) with different props (for the Thai version, the cuisine and the minimum grade inputs are hidden and fixed).<br/>
+The `Common` component holds the logic for fetching the restaurants.<br/>
+It uses some other custom components:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- `Header`: just a graphical header
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `RestaurantsForm`: the search criteria form. It also loads all the available cuisines from the API for the *Big Apple* version
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- `Loading`: a simple spinner
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- `RestaurantsList`: the results list. It also provides controls for the number of results per page, the order and the pagination, which is implemented in the `ListPagination` component.
 
-## Learn More
+- `RestaurantModal`: the modal with the restaurant details. It can be opened clicking one of the results in the list. The details are fetched and displayed by the `RestaurantDetails` component.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To run it locally you can use `npm start` and open [http://localhost:3000](http://localhost:3000) in the browser.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+To run the test, of course, `npm test`.
