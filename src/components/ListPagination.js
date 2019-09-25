@@ -39,7 +39,7 @@ const ListPagination = ({ totalCount, sideItems, limit, offset, onChange }) => {
   }
 
   return paginationItems.length > 1 && (
-    <Row>
+    <Row data-testid="pagination">
       <Col>
         <Pagination size="sm" onClick={onPaginationClick}>
           {paginationItems}

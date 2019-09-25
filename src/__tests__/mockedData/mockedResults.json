@@ -1,0 +1,335 @@
+{
+  "results": [
+    {
+      "restaurant_id": 14711,
+      "dba": "A SUSHI",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 6099,
+      "dba": "AJISEN RAMEN",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 1325,
+      "dba": "AKIYAMA JAPANESE RESTAURANT",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 3211,
+      "dba": "BAI SUSHI",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 25837,
+      "dba": "BAMBOO YA",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 17869,
+      "dba": "CHIDORI JAPANESE CUISINE",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 20557,
+      "dba": "CURRY BO & YOUNG STREET POKE CO",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 20674,
+      "dba": "DONGWON SUSHI & TUNA",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 16005,
+      "dba": "GAN DA SUSHI ZONE",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 21934,
+      "dba": "GYU KAKU",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 19242,
+      "dba": "HADO ASIA BISTRO",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 8165,
+      "dba": "HAPPY KITCHEN",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 24229,
+      "dba": "HIBACHI STATION",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 15515,
+      "dba": "IKI MODERN JAPANESE CUISINE",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 2968,
+      "dba": "JIKJI CAFE",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 25363,
+      "dba": "JOE ASIAN & SUSHI",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 15582,
+      "dba": "KONDO JAPANESE RESTAURANT",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 14657,
+      "dba": "KUMO JAPANESE RESTAURANT",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 22581,
+      "dba": "Matsuri",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 11261,
+      "dba": "MINNOW",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 8482,
+      "dba": "MIZUMI",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 3310,
+      "dba": "MR WASABI",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 8580,
+      "dba": "NAGOYA GOURMET",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 10602,
+      "dba": "NEW HAN YANG SUSHI",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 16945,
+      "dba": "NEW METRO SUSHI CAFE",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 15430,
+      "dba": "NEW SARKURA JAPAN",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 23562,
+      "dba": "NEW TOKYO SUSHI",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 4527,
+      "dba": "O'SAKE JAPANESE RESTAURANT",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 25517,
+      "dba": "OKAWA",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 11958,
+      "dba": "OKIDOKI",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 13312,
+      "dba": "PINK NORI",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 23223,
+      "dba": "PRINCE TEA HOUSE",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 9414,
+      "dba": "RESOBOX",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 19789,
+      "dba": "RIVER JAPANESE CUISINE",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 9214,
+      "dba": "RIVER JAPANESE CUISINE",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 21634,
+      "dba": "ROBATA STEAK AND OYSTER BAR",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 22314,
+      "dba": "SAKURA",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 17342,
+      "dba": "SAKURA KAI",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 22283,
+      "dba": "SAPPS",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 4622,
+      "dba": "SARKU JAPAN",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 10777,
+      "dba": "SARKU JAPAN TERIYAKI & SUSHI EXPRESS",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 6622,
+      "dba": "SUSHI 33",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 4539,
+      "dba": "SUSHI BELL",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 13167,
+      "dba": "SUSHI ISLAND",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 19558,
+      "dba": "SUSHI TAKE OUT ENJOY",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 6447,
+      "dba": "SUSHI TIME",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 19703,
+      "dba": "T-SWIRL CREPE",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 18449,
+      "dba": "TAKUMEN",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 21081,
+      "dba": "TAMASHII RAMEN",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 11933,
+      "dba": "TAMASHII RAMEN",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 11315,
+      "dba": "TOKYO TERIYAKI",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 10711,
+      "dba": "TOMO JAPANESE CAFE",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 21158,
+      "dba": "TOYO JAPANESE CUISINE",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 8229,
+      "dba": "UMI SUSHI BAR & TERIYAKI GRILL",
+      "boro": "QUEENS",
+      "grade": "A"
+    },
+    {
+      "restaurant_id": 6700,
+      "dba": "WATAWA JAPANESE RESTAURANT",
+      "boro": "QUEENS",
+      "grade": ""
+    }
+  ],
+  "total_count": 55
+}

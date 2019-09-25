@@ -41,6 +41,7 @@ const RestaurantModal = ({ id, name, onHide }) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
       onHide={onHide}
+      data-testid="restaurant-modal"
     >
       <Modal.Header closeButton>
       <Modal.Title id="contained-modal-title-vcenter">
@@ -81,7 +82,7 @@ const RestaurantModal = ({ id, name, onHide }) => {
         )}
       </Modal.Body>
       <Modal.Footer>
-      <Button onClick={onHide}>Close</Button>
+        <Button onClick={onHide} data-testid="restaurant-modal-close">Close</Button>
       </Modal.Footer>
     </Modal>
     );

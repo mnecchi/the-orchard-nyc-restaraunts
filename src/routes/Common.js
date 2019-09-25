@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect
+} from 'react';
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
 import Header from '../components/Header';
@@ -7,26 +10,49 @@ import RestaurantsList from '../components/RestaurantsList';
 import RestaurantsForm from '../components/RestaurantsForm';
 import RestaurantModal from '../components/RestaurantModal';
 
-const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
-  const [ name, setName ] = useState('');
-  const [ street, setStreet ] = useState('');
-  const [ boro, setBoro ] = useState('');
-  const [ cuisine, setCuisine ] = useState(props.cuisine || '');
-  const [ minGrade, setMinGrade ] = useState(props.minGrade || 'A');
-  const [ loading, setLoading ] = useState(false);
-  const [ limit, setLimit ] = useState(25);
-  const [ offset, setOffset ] = useState(0);
-  const [ order, setOrder ] = useState('dba');
-  const [ results, setResults ] = useState();
-  const [ submit, setSubmit ] = useState(false);
-  const [ error, setError ] = useState(false);
-  const [ selectedRestaurant, setSelectedRestaurant ] = useState({});
+const Common = ({
+  apiUrl,
+  title,
+  headerClassName,
+  hide,
+  ...props
+}) => {
+  // search criteria
+  const [name, setName] = useState('');
+  const [street, setStreet] = useState('');
+  const [boro, setBoro] = useState('');
+  const [cuisine, setCuisine] = useState(props.cuisine || '');
+  const [minGrade, setMinGrade] = useState(props.minGrade || 'A');
 
+  // limit and sorting
+  const [limit, setLimit] = useState(25);
+  const [offset, setOffset] = useState(0);
+  const [order, setOrder] = useState('dba');
+
+  // search results
+  const [results, setResults] = useState();
+
+  // selected restaurant (details are open in a modal)
+  const [selectedRestaurant, setSelectedRestaurant] = useState({});
+
+  // async states
+  const [loading, setLoading] = useState(false);
+  const [submit, setSubmit] = useState(false);
+  const [error, setError] = useState(false);
+
+  /**
+   * Set the html title
+   */
   useEffect(() => {
     document.title = title;
   }, [title]);
 
+  /**
+   * Start the API fetch call
+   */
   useEffect(() => {
+
+    // must be run only after the form has been submitted
     if (!submit) {
       return;
     }
@@ -34,16 +60,25 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
     setError(false);
     setLoading(true);
 
+    // build the query string
     const queryOptions = {
-      dba: name, street, boro, cuisine, minGrade, limit, offset, order
+      dba: name,
+      street,
+      boro,
+      cuisine,
+      minGrade,
+      limit,
+      offset,
+      order
     };
     const queryString = Object.keys(queryOptions)
       .reduce((acc, option) => {
         acc.push(`${option}=${queryOptions[option]}`);
         return acc;
-      } , [])
+      }, [])
       .join('&');
 
+    // call the API
     fetch(`${apiUrl}/restaurants?${queryString}`)
       .then(response => {
         if (!response.ok) {
@@ -52,8 +87,10 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
 
         return response.json();
       }).then(json => {
+        // results returned
         setResults(json);
-      }).catch(err => {
+      }).catch(() => {
+        // an error occured
         setResults([]);
         setError(true);
       }).finally(() => {
@@ -61,7 +98,14 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
       });
   }, [submit, name, street, boro, limit, offset, order, cuisine, minGrade, apiUrl]);
 
-  const onRestaurantsChange = ({ cuisine, minGrade, name, street, boro }) => {
+  // handler for the form submit
+  const onRestaurantsChange = ({
+    cuisine,
+    minGrade,
+    name,
+    street,
+    boro
+  }) => {
     setOffset(0);
     setCuisine(cuisine);
     setMinGrade(minGrade);
@@ -71,21 +115,13 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
     setSubmit(true);
   }
 
-  const onLimitChange = limit => {
-    setLimit(limit);
-  }
+  // handlers for limit, pagination navigation (offset) and order of the list
+  const onLimitChange = limit => setLimit(limit);
+  const onOrderChange = order => setOrder(order);
+  const onOffsetChange = offset => setOffset(offset);
 
-  const onOrderChange = order => {
-    setOrder(order);
-  }
-
-  const onOffsetChange = offset => {
-    setOffset(offset);
-  }
-
-  const onOpenRestaurantDetails = restaurant => {
-    setSelectedRestaurant(restaurant);
-  }
+  // handler for the click on a results' row -> opens a modal
+  const onOpenRestaurantDetails = restaurant => setSelectedRestaurant(restaurant);
 
   return (
     <Container className="main shadow">
@@ -113,13 +149,10 @@ const Common = ({ apiUrl, title, headerClassName, hide, ...props }) => {
           onOpenRestaurantDetails={onOpenRestaurantDetails}
         />
       }
-      {error && <Alert variant="danger">An error occured! <span role="img" aria-label="">🤬</span></Alert>}
+      {error && <Alert variant="danger" data-testid="generic-fetch-error">An error occured! <span role="img" aria-label="">🤬</span></Alert>}
       <RestaurantModal id={selectedRestaurant.restaurant_id} name={selectedRestaurant.dba} onHide={() => setSelectedRestaurant({})} />
     </Container>
   );
-
-
-
 }
 
 export default Common;
