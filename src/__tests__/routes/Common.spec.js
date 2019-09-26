@@ -8,6 +8,8 @@ import Common from '../../routes/Common';
 
 // fetch mock: I don't want to call the API each time I run the tests!
 global.fetch = jest.fn();
+// this needs to be mocked otherwise it throws a not implement error
+window.scrollTo = jest.fn();
 
 const props = {
   apiUrl: 'http://example.com',

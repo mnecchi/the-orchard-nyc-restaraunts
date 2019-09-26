@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
+import scrollIntoView from 'scroll-into-view';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,6 +10,14 @@ import { gradesEmojis } from '../config';
 import ListPagination from './ListPagination';
 
 const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderChange, onOffsetChange, onOpenRestaurantDetails }) => {
+  useLayoutEffect(() => {
+    // scroll the results into view on mount
+    const list = document.getElementById('restaurants-list');
+    if (list) {
+      scrollIntoView(list);
+    }
+  }, []);
+
   const { results, total_count } = data || {};
 
   // handlers for number of results per pages, order and page navigation changes
@@ -24,7 +33,7 @@ const RestaurantsList = ({ limit, offset, order, data, onLimitChange, onOrderCha
   return (
     <Container className="results">
       {results.length === 0 ? <Alert variant="dark" data-testid="no-results-info">No Restaurants Found! <span role="img" aria-label="">😢</span></Alert> : (
-      <div data-testid='restaurants-list'>
+      <div id="restaurants-list" data-testid='restaurants-list'>
         <Row>
           <Col>
             <Form>
